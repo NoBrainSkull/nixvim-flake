@@ -110,8 +110,6 @@
     plugins.lsp = {
       enable = true;
       servers = {
-        ts_ls.enable = true;
-        nil_ls.enable = true;
       };
 
       	keymaps = {
