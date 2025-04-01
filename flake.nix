@@ -43,7 +43,7 @@
             default = nvim;
           };
 
-          nixosModules.nvim = nvim;
+        nixosConfigurations.nixvim = import ./config;
         };
     };
 }
