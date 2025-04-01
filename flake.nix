@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
@@ -42,8 +43,13 @@
             # Lets you run `nix run .` to start nixvim
             default = nvim;
           };
-
-        nixosConfigurations.nixvim = import ./config;
         };
+
+      nixosModules.nixvim = nixvim.legacyPackages.x86_64-linux.makeNixvimWithModule {
+        module = import ./config;
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+      };
     };
 }
