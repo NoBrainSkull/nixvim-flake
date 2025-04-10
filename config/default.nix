@@ -163,14 +163,13 @@
 	];
 
 	mapping = {
-	  "<CR>" = "cmp.mapping.confirm({ select = true })";
+	  "<Tab>" = "cmp.mapping.confirm({ select = true })";
 	  "<Down>" = "cmp.mapping.select_next_item()";
 	  "<Up>" = "cmp.mapping.select_prev_item()";
 	  "<C-e>" = "cmp.mapping.abort()";
 	  "<C-d>" = "cmp.mapping.scroll_docs(-4)";
 	  "<C-f>" = "cmp.mapping.scroll_docs(4)";
 	  "<C-Space>" = "cmp.mapping.complete()";
-	  "<Tab>" = "cmp.mapping.confirm({ select = true })";
 	};
       };
     };
