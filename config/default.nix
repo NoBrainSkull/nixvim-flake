@@ -178,6 +178,9 @@
       enable = true;
       extensions.fzy-native.enable = true;
       extensions.file-browser.enable = true;
+			settings = {
+				file_ignore_patterns = ("node_modules/.*, vendor/.*");
+			};
     };
 
     plugins.oil.enable = true;
