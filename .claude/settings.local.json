@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:nix-community.github.io)",
+      "WebSearch",
+      "Bash(nix flake check:*)",
+      "Bash(nix search:*)"
+    ]
+  }
+}

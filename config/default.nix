@@ -1,4 +1,4 @@
-{self, ...}: {
+{self, pkgs, ...}: {
 # Import all your configuration modules here
   imports = [];
 
@@ -205,9 +205,24 @@
     plugins.treesitter = {
       enable = true;
       settings.highlight.enable = true;
+      # Explicitly include tree-sitter-org-nvim grammar
+      grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [
+        pkgs.tree-sitter-grammars.tree-sitter-org-nvim
+      ];
+      languageRegister.org = "org";
     };
 
     plugins.treesitter-textobjects.enable = true;
+
+#    # Orgmode configuration
+#    plugins.orgmode = {
+#      enable = true;
+#      settings = {
+#        org_agenda_files = ["~/org/**/*"];
+#        org_default_notes_file = "~/org/notes.org";
+#      };
+#    };
+
     plugins.typst-vim.enable = true;
     plugins.which-key.enable = true;
     plugins.nvim-autopairs.enable = true;
