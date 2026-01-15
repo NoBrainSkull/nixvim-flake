@@ -251,6 +251,9 @@
     plugins.vim-surround.enable = true;
 
     opts = {
+      foldmethod="expr";
+      foldexpr="nvim_treesitter#foldexpr()";
+
 # numbering
       number = true;
       relativenumber = true;
