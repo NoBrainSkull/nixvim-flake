@@ -211,6 +211,7 @@
     plugins.treesitter = {
       enable = true;
       settings.highlight.enable = true;
+      folding= true;
       # Explicitly include tree-sitter-org-nvim grammar
       grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [
         pkgs.tree-sitter-grammars.tree-sitter-org-nvim
@@ -250,8 +251,6 @@
     plugins.vim-surround.enable = true;
 
     opts = {
-      foldmethod = "expr";
-      foldexpr = "nvim_treesitter#foldexpr()";
 # numbering
       number = true;
       relativenumber = true;
