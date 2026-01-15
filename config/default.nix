@@ -1,9 +1,7 @@
 {self, pkgs, ...}: {
-# Import all your configuration modules here
   imports = [];
 
-  config = {
-    globals.mapleader = " ";
+  globals.mapleader = " ";
     keymaps = [
     {
       mode = ["i"];
@@ -71,63 +69,71 @@
     plugins.lsp = {
       enable = true;
       servers = {
+        elixirls = {
+          enable = true;
+        };
+        nixd = { enable = true; };
+        tinymist = {
+          enable = true;
+          settings = { formatterMode = "typstfmt"; };
+        };
       };
 
       keymaps = {
-	silent = true;
-	lspBuf = {
-	  gd = {
-	    action = "definition";
-	    desc = "Goto Definition";
-	  };
-	  gr = {
-	    action = "references";
-	    desc = "Goto References";
-	  };
-	  gD = {
-	    action = "declaration";
-	    desc = "Goto Declaration";
-	  };
-	  gI = {
-	    action = "implementation";
-	    desc = "Goto Implementation";
-	  };
-	  gT = {
-	    action = "type_definition";
-	    desc = "Type Definition";
-	  };
-	  "<leader>h" = {
-	    action = "hover";
-	    desc = "Hover";
-	  };
-	  "<leader>cw" = {
-	    action = "workspace_symbol";
-	    desc = "Workspace Symbol";
-	  };
-	  "<leader>cr" = {
-	    action = "rename";
-	    desc = "Rename";
-	  };
-	  "<leader>F" = {
-	    action = "format";
-	    desc = "Format";
-	  };
-	};
+      silent = true;
+      lspBuf = {
+        gd = {
+          action = "definition";
+          desc = "Goto Definition";
+        };
+        gr = {
+          action = "references";
+          desc = "Goto References";
+        };
+        gD = {
+          action = "declaration";
+          desc = "Goto Declaration";
+        };
+        gI = {
+          action = "implementation";
+          desc = "Goto Implementation";
+        };
+        gT = {
+          action = "type_definition";
+          desc = "Type Definition";
+        };
+        "<leader>h" = {
+          action = "hover";
+          desc = "Hover";
+        };
+        "<leader>cw" = {
+          action = "workspace_symbol";
+          desc = "Workspace Symbol";
+        };
+        "<leader>cr" = {
+          action = "rename";
+          desc = "Rename";
+        };
+        "<leader>F" = {
+          action = "format";
+          desc = "Format";
+        };
+      };
 
-	diagnostic = {
-	  "<leader>e" = {
-	    action = "open_float";
-	    desc = "Line Diagnostics";
-	  };
-	  "gl" = {
-	    action = "goto_next";
-	    desc = "Next Diagnostic";
-	  };
-	  "gh" = {
-	    action = "goto_prev";
-	    desc = "Previous Diagnostic";
-	  };
-	};
+      diagnostic = {
+        "<leader>e" = {
+          action = "open_float";
+          desc = "Line Diagnostics";
+        };
+        "gl" = {
+          action = "goto_next";
+          desc = "Next Diagnostic";
+        };
+        "gh" = {
+          action = "goto_prev";
+          desc = "Previous Diagnostic";
+        };
+      };
       };
     };
 
@@ -135,42 +141,42 @@
       enable = true;
       autoEnableSources = true;
       settings = {
-	sources = [
-	{
-	  name = "nvim_lsp";
-	  priority = 1000;
-	}
-	{
-	  name = "nvim_lsp_signature_help";
-	  priority = 1000;
-	}
-	{
-	  name = "treesitter";
-	  priority = 850;
-	}
-	{
-	  name = "luasnip";
-	  priority = 750;
-	}
-	{
-	  name = "buffer";
-	  priority = 500;
-	}
-	{ name = "path"; priority = 300;}
-	{ name = "git"; priority = 250;}
-	{ name = "calc"; priority = 250;}
-	{ name = "emoji"; priority = 100;}       
-	];
+        sources = [
+          {
+            name = "nvim_lsp";
+            priority = 1000;
+          }
+          {
+            name = "nvim_lsp_signature_help";
+            priority = 1000;
+          }
+          {
+            name = "treesitter";
+            priority = 850;
+          }
+          {
+            name = "luasnip";
+            priority = 750;
+          }
+          {
+            name = "buffer";
+            priority = 500;
+          }
+          { name = "path"; priority = 300;}
+          { name = "git"; priority = 250;}
+          { name = "calc"; priority = 250;}
+          { name = "emoji"; priority = 100;}       
+        ];
 
-	mapping = {
-	  "<Tab>" = "cmp.mapping.confirm({ select = true })";
-	  "<Down>" = "cmp.mapping.select_next_item()";
-	  "<Up>" = "cmp.mapping.select_prev_item()";
-	  "<C-e>" = "cmp.mapping.abort()";
-	  "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-	  "<C-f>" = "cmp.mapping.scroll_docs(4)";
-	  "<C-Space>" = "cmp.mapping.complete()";
-	};
+        mapping = {
+          "<Tab>" = "cmp.mapping.confirm({ select = true })";
+          "<Down>" = "cmp.mapping.select_next_item()";
+          "<Up>" = "cmp.mapping.select_prev_item()";
+          "<C-e>" = "cmp.mapping.abort()";
+          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-Space>" = "cmp.mapping.complete()";
+        };
       };
     };
 
@@ -214,14 +220,14 @@
 
     plugins.treesitter-textobjects.enable = true;
 
-#    # Orgmode configuration
-#    plugins.orgmode = {
-#      enable = true;
-#      settings = {
-#        org_agenda_files = ["~/org/**/*"];
-#        org_default_notes_file = "~/org/notes.org";
-#      };
-#    };
+    # Orgmode configuration
+    plugins.orgmode = {
+      enable = true;
+      settings = {
+        org_agenda_files = ["~/org/**/*"];
+        org_default_notes_file = "~/org/notes.org";
+      };
+    };
 
     plugins.typst-vim.enable = true;
     plugins.which-key.enable = true;
@@ -280,9 +286,5 @@
       scrolloff = 8;
       cursorline = true;
       completeopt = "menu,menuone,noselect";
-
-
     };
-
-  };
 }
