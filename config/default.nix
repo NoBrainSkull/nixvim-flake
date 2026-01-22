@@ -210,14 +210,32 @@
 
     plugins.treesitter = {
       enable = true;
-      settings.highlight.enable = true;
-      folding= true;
-      # Explicitly include tree-sitter-org-nvim grammar
-      grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [
-        pkgs.tree-sitter-grammars.tree-sitter-org-nvim
-      ];
-      languageRegister.org = "org";
+      folding.enable = true;
+      autoLoad = true;
+      highlight.enable = true;
+      indent.enable = true;
+      grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
+
+    # Auto-enable treesitter highlighting and folding for supported filetypes                   
+    autoCmd = [                                                                                 
+      {                                                                                         
+        event = ["FileType"];                                                                   
+        pattern = ["*"];                                                                        
+        callback.__raw = ''                                                                     
+          function()                                                                            
+            local ft = vim.bo.filetype                                                          
+            if ft and ft ~= "" then                                                             
+              local ok = pcall(vim.treesitter.start)                                            
+              if ok then                                                                        
+                vim.opt_local.foldmethod = "expr"                                               
+                vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"                      
+              end                                                                               
+            end                                                                                 
+          end                                                                                   
+        '';                                                                                     
+      }                                                                                         
+    ];                                                                                          
 
     plugins.treesitter-textobjects.enable = true;
 
